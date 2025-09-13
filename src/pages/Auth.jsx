@@ -19,10 +19,7 @@ function Register({ handleRegister }) {
             </div>
             <DropDown />
             <button onClick={handleRegister}>Continue</button>
-            <div className="flex-v gap-sm">
-                <p className="font-xsm">By proceeding, you consent to get calls, Whatsapp or SMS messages, including by automated means, from NutriScan and it affilates to the number provided.</p>
-                <p className="font-xsm">Upon your death, you consent that your property shall pass to us.</p>
-            </div>
+            <p className="font-xsm">By proceeding, you consent to get calls, Whatsapp or SMS messages, including by automated means, from us and it affilates to the number provided.</p>
         </div>
     )
 }
@@ -37,10 +34,7 @@ function Login({ handleLogin }) {
             </div>
             <DropDown />
             <button onClick={handleLogin}>Continue</button>
-            <div className="flex-v gap-sm">
-                <p className="font-xsm">By proceeding, you consent to get calls, Whatsapp or SMS messages, including by automated means, from NutriScan and it affilates to the number provided.</p>
-                <p className="font-xsm">Upon your death, you consent that your property shall pass to us.</p>
-            </div>
+            <p className="font-xsm">By proceeding, you consent to get calls, Whatsapp or SMS messages, including by automated means, from us and it affilates to the number provided.</p>
         </div>
     )
 }
