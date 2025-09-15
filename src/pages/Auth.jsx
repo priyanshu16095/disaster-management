@@ -1,46 +1,106 @@
 import React, { useState } from 'react'
-import Modal from '../components/Modal'
 import { AnimatePresence } from 'framer-motion'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { AuthState } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
 import { motion } from 'framer-motion'
+import { UserState } from '../context/UserContext';
 
 function Register({ handleRegister }) {
+    const [data, setData] = useState([
+        { placeholder: "First Name", value: "" },
+        { placeholder: "Last Name", value: "" },
+        { placeholder: "Email", value: "" },
+        { placeholder: "Mobile", value: "" },
+        { placeholder: "Password", value: "" }
+    ])
+
+    const handleChange = (index, newValue) => {
+        setData((prev) =>
+            prev.map((item, i) =>
+                i === index ? { ...item, value: newValue } : item
+            )
+        );
+    };
+
+    const { updateUserData } = UserState();
+
+    const handleSubmit = () => {
+        updateUserData("firstName", data[0].value)
+        updateUserData("lastName", data[1].value)
+        updateUserData("email", data[2].value)
+        updateUserData("mobile", data[3].value)
+        updateUserData("password", data[4].value)
+
+        handleRegister()
+    }
+
     return (
         <div className='flex-v gap'>
             <p className="title">Register</p>
             <p>What's your username, email and password?</p>
             <div className="flex-v gap-sm">
-                <input type="text" placeholder='Username' />
-                <input type="text" placeholder='Email' />
-                <input type="text" placeholder='Password' />
+                {data &&
+                    data.map((item, index) => (
+                        <input type='text' key={index} placeholder={item.placeholder} value={item.value} onChange={(e) => handleChange(index, e.target.value)} />
+                    ))}
             </div>
-            <DropDown />
-            <button onClick={handleRegister}>Continue</button>
+            <div className="flex-h gap">
+                <DropDown title={"Choose Role"} data={["Admin", "User"]} />
+                <DropDown title={"Allow Location"} data={["Yes", "No"]} />
+            </div>
+            <button onClick={handleSubmit}>Continue</button>
             <p className="font-xsm">By proceeding, you consent to get calls, Whatsapp or SMS messages, including by automated means, from us and it affilates to the number provided.</p>
         </div>
     )
 }
+
 function Login({ handleLogin }) {
+    const [data, setData] = useState([
+        { placeholder: "Email", value: "" },
+        { placeholder: "Mobile", value: "" },
+        { placeholder: "Password", value: "" }
+    ])
+
+    const { updateUserData } = UserState();
+
+    const handleSubmit = () => {
+        updateUserData("email", data[0].value)
+        updateUserData("mobile", data[1].value)
+        updateUserData("password", data[2].value)
+
+        handleLogin()
+    }
+
+    const handleChange = (index, newValue) => {
+        setData((prev) =>
+            prev.map((item, i) =>
+                i === index ? { ...item, value: newValue } : item
+            )
+        );
+    };
+
     return (
         <div className='flex-v gap'>
             <p className="title">Login</p>
             <p>What's your email and password?</p>
             <div className="flex-v gap-sm">
-                <input type="text" placeholder='Email' />
-                <input type="text" placeholder='Password' />
+                {data &&
+                    data.map((item, index) => (
+                        <input type='text' key={index} placeholder={item.placeholder} value={item.value} onChange={(e) => handleChange(index, e.target.value)} />
+                    ))}
             </div>
-            <DropDown />
-            <button onClick={handleLogin}>Continue</button>
+            <div className="flex-h gap">
+                <DropDown title={"Choose Role"} data={["Admin", "User"]} />
+                <DropDown title={"Allow Location"} data={["Yes", "No"]} />
+            </div>
+            <button onClick={handleSubmit}>Continue</button>
             <p className="font-xsm">By proceeding, you consent to get calls, Whatsapp or SMS messages, including by automated means, from us and it affilates to the number provided.</p>
         </div>
     )
 }
-function DropDown() {
-    const title = "Choose Role"
-    const data = ['Admin', 'User']
+function DropDown({ title, data }) {
     const [showDropdown, setShowDropDown] = useState(false)
     const [choosenValue, setChoosenValue] = useState('')
 
@@ -54,19 +114,21 @@ function DropDown() {
         <div className='dropdown flex-v'>
             <p className='dropdown__title' onClick={handleShowDropDown}>{choosenValue === '' ? title : choosenValue}</p>
             <div className={`dropdown__list flex-v ${showDropdown ? 'show__dropdown' : 'hide__dropdown'}`}>
-                {data.map((item, index) => (
+                {data ? data.map((item, index) => (
                     <p className='dropdown__item' key={index} onClick={() => handleSelectValue(item)}>{item}</p>
-                ))}
+                )) : <p>Dropdown</p>}
             </div>
         </div>
     )
 }
 function OtpForm({ hanldeSubmitOtp }) {
+    const { userData } = UserState()
+
     return (
         <div className='flex-v gap'>
             <p className="title">OTP</p>
             <div className="flex-v gap-sm">
-                <p>Enter the OTP sent to +91-9027644034</p>
+                <p>Enter the OTP sent to +91-{userData.mobile}</p>
                 <OtpInput length={4} />
                 <button onClick={hanldeSubmitOtp}>Continue</button>
             </div>
