@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { div, p } from 'framer-motion/client'
 import Logo from '../components/Logo'
+import { Link } from 'react-router-dom'
 
 function Contacts({ data }) {
   return (
@@ -170,6 +171,7 @@ function Footer() {
           <p className="link">Website Information</p>
           <p className="link">Privacy</p>
           <p className="link">Report</p>
+          <Link to='/sos'><p className="link">Simulate SOS</p></Link>
         </div>
         <div className="flex-v gap-sm">
           <p className="link">Accessibility</p>
@@ -189,7 +191,7 @@ function SOSModal({ closeModal }) {
         <p className='title'>The SOS has been sent sucessfully!</p>
 
         <div className="flex-v gap">
-          <p className="bold">We have you basic information which includes name, mobile, email, location.</p>
+          <p className="bold">We have your basic information which includes name, mobile, email, location.</p>
           <p className="bold">If you’re in good condition, please fill out this form so that we can be one step closer to rescuing you.</p>
 
           <input type="text" placeholder='How many people are there?' />
