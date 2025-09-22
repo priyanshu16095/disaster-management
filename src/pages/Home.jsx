@@ -199,7 +199,7 @@ function SOSModal({ closeModal }) {
           <input type="text" placeholder='Are you injured?' />
 
           <div className="margin-top flex-v gap-sm">
-            <p>Upload some pictures of you and nearby places.s</p>
+            <p>Upload some pictures of you and nearby places.</p>
             <input type='file' />
           </div>
 
