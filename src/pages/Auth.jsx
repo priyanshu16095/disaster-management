@@ -198,7 +198,6 @@ function Auth() {
 
                 <div className="auth__container">
                     <div className="auth__choose border width-screen flex-h">
-                        {/* style={{ backgroundColor: selected === 0 ? "lightgray" : "white"}} */}
                         <div className="hover border-right padding width-screen cursor overflow-hidden" onClick={() => setSelected(1)} style={{ fontWeight: selected === 1 && "bold"}}>Register</div>
                         <div className="hover padding width-screen cursor" onClick={() => setSelected(0)} style={{ fontWeight: selected === 0 && "bold"}}>Login</div>
                     </div>

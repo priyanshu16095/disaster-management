@@ -311,3 +311,34 @@
 .hide__dropdown {
   display: none !important;
 }
+
+.dummycontacts, .awareness {
+  flex: 1;
+}
+
+.dummycontacts {
+  flex: 0.3;
+}
+.awareness {
+  flex: 0.7;
+  height: 350px;
+  overflow-y: scroll;
+}
+
+.tab:hover {
+  color: black;
+  cursor: pointer;
+  background-color: rgba(211, 211, 211, 0.491);
+}
+
+.awarenesstabs {
+  flex: 0.3;
+}
+.floodstab {
+  flex: 0.7;
+}
+
+.home-bottom-padding {
+  padding-bottom: 5dvh;
+}
+
