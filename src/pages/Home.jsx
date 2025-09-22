@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { div, p } from 'framer-motion/client'
 import Logo from '../components/Logo'
@@ -162,7 +162,6 @@ function Footer() {
           <p className="link">Facebook</p>
           <p className="link">Twitter</p>
           <p className="link">YouTube</p>
-          <p className="link">Contact Us</p>
         </div>
       </div>
 
@@ -183,10 +182,47 @@ function Footer() {
   )
 }
 
+function SOSModal({ closeModal }) {
+  return (
+    <div className='sosmodal'>
+      <div className="sosmodal-container border padding flex-v gap-md">
+        <p className='title'>The SOS has been sent sucessfully!</p>
+
+        <div className="flex-v gap">
+          <p className="bold">We have you basic information which includes name, mobile, email, location.</p>
+          <p className="bold">If you’re in good condition, please fill out this form so that we can be one step closer to rescuing you.</p>
+
+          <input type="text" placeholder='How many people are there?' />
+          <input type="text" placeholder='Since how many days you have been stuck?' />
+          <input type="text" placeholder='Are you injured?' />
+
+          <div className="margin-top flex-v gap-sm">
+            <p>Upload some pictures of you and nearby places.s</p>
+            <input type='file' />
+          </div>
+
+          <button className='margin-top' onClick={() => closeModal()}>Submit</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function Home() {
+  const [showModal, setShowModal] = useState(false)
+
+  function handleShowModal() {
+    setShowModal(true)
+  }
+
+  function closeModal() {
+    setShowModal(false)
+  }
+
   return (
     <div className='flex-v gap-md padding'>
-      <Navbar />
+      {showModal && <SOSModal closeModal={closeModal} />}
+      <Navbar closeModal={closeModal} handleShowModal={handleShowModal} />
       <div className="flex gap">
         <DummyContacts />
         <Awareness />

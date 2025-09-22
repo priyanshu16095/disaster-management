@@ -22,6 +22,7 @@
 
 .btn:hover {
   opacity: .95;
+  background-color: orangered !important;
 }
 
 .btn .animation {

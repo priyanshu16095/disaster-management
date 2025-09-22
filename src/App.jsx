@@ -4,6 +4,7 @@ import './css/components.css'
 import Home from './pages/Home'
 import Auth from './pages/Auth'
 import { AuthState } from './context/AuthContext'
+import SOS from './pages/SOS';
 
 function App() {
   const { isAuthenticated } = AuthState()
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/auth" />} />
           <Route path='/home' element={<Home />} />
           <Route path='/auth' element={<Auth />} />
+          <Route path='/sos' element={<SOS />} />
         </Routes>
       </Router>
     </div>

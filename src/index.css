@@ -66,12 +66,14 @@ input, textarea {
   background-color: var(--clr-white-222);
 }
 button {
-  background-color: #0071e3;
-  color: white;
+  /* background-color: #0071e3; */
+  /* color: white; */
+  color: #444;
+  background-color: lightgray;
   font-weight: bold;
 }
 button:hover {
-  background-color: #0264c6;
+  color: black;
 }
 .outlined {
   background-color: transparent;
@@ -247,6 +249,9 @@ p {
   height: 1px;                 
   background-color: var(--clr-lightgray-444); 
   border: none;               
+}
+.margin-top {
+  margin-top: 1.5rem;
 }
 
 /* TABLE */
